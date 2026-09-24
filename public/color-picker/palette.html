@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Palette Generator — ChromaLab</title>
+  <meta name="description" content="Generate harmonious color palettes — analogous, complementary, triadic, tetradic or monochromatic — and copy them as CSS variables." />
+  <meta property="og:title" content="Palette Generator — ChromaLab" />
+  <meta property="og:description" content="Generate harmonious 5-color palettes, lock the keepers, and copy them as CSS variables." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="ambient" aria-hidden="true">
+    <span class="blob blob-cyan"></span>
+    <span class="blob blob-violet"></span>
+    <span class="blob blob-amber"></span>
+  </div>
+
+  <div class="page">
+    <header class="header-outer">
+      <div class="container">
+        <div class="header-inner glass">
+          <a class="brand" href="index.html">
+            <span class="brand-mark"><span class="brand-dot"></span></span>
+            <span class="brand-name">Chroma<span class="brand-accent">Lab</span></span>
+          </a>
+          <nav class="nav" aria-label="Main">
+            <a class="nav-link" href="index.html">Picker</a>
+            <a class="nav-link active" href="palette.html" aria-current="page">Palette</a>
+            <a class="nav-link" href="contrast.html">Contrast</a>
+          </nav>
+          <div class="header-meta">
+            <a class="btn btn-accent" href="contrast.html">Contrast →</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="grid-main">
+        <section class="card glass col-12" aria-label="Palette generator">
+          <div class="card-head">
+            <div>
+              <h1 class="card-title">Palette</h1>
+              <p class="card-sub" id="harmonyLabel">Analogous harmony · 5 swatches</p>
+            </div>
+            <div class="controls">
+              <label class="visually-hidden" for="harmony" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Harmony</label>
+              <select class="select" id="harmony">
+                <option value="analogous">Analogous</option>
+                <option value="complementary">Complementary</option>
+                <option value="triadic">Triadic</option>
+                <option value="tetradic">Tetradic</option>
+                <option value="monochromatic">Monochromatic</option>
+              </select>
+              <button class="btn btn-accent" id="regenerate" type="button">Regenerate</button>
+              <span class="kbd-hint"><kbd>Space</kbd> to shuffle</span>
+            </div>
+          </div>
+
+          <div class="swatch-grid" id="swatchGrid"></div>
+
+          <div class="palette-actions">
+            <button class="btn btn-ghost" id="copyAll" type="button">Copy CSS variables</button>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span>ChromaLab — precision color instrument</span>
+        <span>sRGB · WCAG 2.1</span>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module" src="js/palette.js"></script>
+</body>
+</html>
