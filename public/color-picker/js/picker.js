@@ -81,13 +81,8 @@ function update() {
   const { h, s, v, a } = state;
   const rgb = currentRgb();
   const hex = rgbToHex(...rgb);
-  const [hh, ss, ll] = rgbToHsl(...rgb-slider-fix());
-  updateDom({ h, s, v, a, rgb, hex, hsl: [hh, ss, ll] });
-}
-
-// rgbToHsl needs the real channels; helper kept inline for clarity
-function rgbToHslChannels() {
-  return rgbToHsl(...currentRgb());
+  const hsl = rgbToHsl(...rgb);
+  updateDom({ h, s, v, a, rgb, hex, hsl });
 }
 
 function updateDom({ h, s, v, a, rgb, hex, hsl }) {
