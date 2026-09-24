@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Color Picker — ChromaLab</title>
+  <meta name="description" content="Pick any color with hue, saturation, value and alpha controls, then copy it as HEX, RGB or HSL." />
+  <meta property="og:title" content="Color Picker — ChromaLab" />
+  <meta property="og:description" content="Pick any color with hue, saturation, value and alpha controls, then copy it as HEX, RGB or HSL." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="ambient" aria-hidden="true">
+    <span class="blob blob-cyan"></span>
+    <span class="blob blob-violet"></span>
+    <span class="blob blob-amber"></span>
+  </div>
+
+  <div class="page">
+    <header class="header-outer">
+      <div class="container">
+        <div class="header-inner glass">
+          <a class="brand" href="index.html">
+            <span class="brand-mark"><span class="brand-dot"></span></span>
+            <span class="brand-name">Chroma<span class="brand-accent">Lab</span></span>
+          </a>
+          <nav class="nav" aria-label="Main">
+            <a class="nav-link active" href="index.html" aria-current="page">Picker</a>
+            <a class="nav-link" href="palette.html">Palette</a>
+            <a class="nav-link" href="contrast.html">Contrast</a>
+          </nav>
+          <div class="header-meta">
+            <div class="live-chip glass-soft" title="Currently selected color">
+              <span class="live-dot" id="liveDot"></span>
+              <span class="live-hex" id="liveHex">#22D3C5</span>
+            </div>
+            <a class="btn btn-accent" href="palette.html">Palette →</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="grid-main">
+        <section class="card glass col-7" aria-label="Color picker">
+          <div class="card-head">
+            <div>
+              <h1 class="card-title">Color Picker</h1>
+              <p class="card-sub">Precision swatch instrument</p>
+            </div>
+            <div class="head-tools">
+              <button id="eyedropperBtn" class="btn btn-ghost" type="button" hidden>Pick from screen</button>
+              <div class="hsl-chips" aria-hidden="true">
+                <span class="chip" id="chipH">H 174°</span>
+                <span class="chip" id="chipS">S 85%</span>
+                <span class="chip" id="chipL">L 62%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="sv-area" id="svArea">
+            <div class="sv-base" id="svBase"></div>
+            <div class="sv-white"></div>
+            <div class="sv-black"></div>
+            <div class="sv-knob" id="svKnob"></div>
+          </div>
+
+          <div class="sliders">
+            <div class="slider-row">
+              <div class="slider-labels">
+                <span class="slider-name">Hue</span>
+                <span class="slider-value" id="hueValue">174°</span>
+              </div>
+              <div class="slider hue-track" id="hueSlider"><div class="slider-knob"></div></div>
+            </div>
+            <div class="slider-row">
+              <div class="slider-labels">
+                <span class="slider-name">Saturation</span>
+                <span class="slider-value" id="satValue">85%</span>
+              </div>
+              <div class="slider" id="satSlider"><div class="slider-knob"></div></div>
+            </div>
+            <div class="slider-row">
+              <div class="slider-labels">
+                <span class="slider-name">Value</span>
+                <span class="slider-value" id="valValue">84%</span>
+              </div>
+              <div class="slider" id="valSlider"><div class="slider-knob"></div></div>
+            </div>
+            <div class="slider-row">
+              <div class="slider-labels">
+                <span class="slider-name">Alpha</span>
+                <span class="slider-value" id="alphaValue">100%</span>
+              </div>
+              <div class="slider" id="alphaSlider"><div class="slider-knob"></div></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card glass col-5 readout-card" aria-label="Color readout">
+          <div class="card-head">
+            <h2 class="section-title">Readout</h2>
+            <div class="format-tabs glass-soft" role="tablist" aria-label="Color format">
+              <button class="tab active" data-format="hex" type="button">HEX</button>
+              <button class="tab" data-format="rgb" type="button">RGB</button>
+              <button class="tab" data-format="hsl" type="button">HSL</button>
+            </div>
+          </div>
+
+          <div class="readout-hero glass-soft">
+            <div class="readout-swatch"><div class="readout-swatch-fill" id="swatchFill"></div></div>
+            <div class="readout-main">
+              <input id="bigValue" class="big-value" value="#22D3C5" spellcheck="false" autocomplete="off" aria-label="Color value, editable" />
+              <div class="readout-sub" id="readoutSub">rgb(34, 211, 197)</div>
+            </div>
+          </div>
+
+          <div class="format-rows">
+            <div class="format-row glass-soft">
+              <span class="format-key">HEX</span>
+              <span class="format-val" id="rowHex">#22D3C5</span>
+              <button class="copy-btn" id="copyHex" type="button">Copy</button>
+            </div>
+            <div class="format-row glass-soft">
+              <span class="format-key">RGB</span>
+              <span class="format-val" id="rowRgb">34, 211, 197</span>
+              <button class="copy-btn" id="copyRgb" type="button">Copy</button>
+            </div>
+            <div class="format-row glass-soft">
+              <span class="format-key">HSL</span>
+              <span class="format-val" id="rowHsl">174°, 84%, 48%</span>
+              <button class="copy-btn" id="copyHsl" type="button">Copy</button>
+            </div>
+          </div>
+
+          <button class="btn btn-accent copy-all" id="copyAll" type="button">Copy all formats</button>
+
+          <div class="note-row">
+            <span class="note-dot" id="wcagDot"></span>
+            <span id="wcagText">WCAG AA on dark ink — 7.4:1</span>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span>ChromaLab — precision color instrument</span>
+        <span>sRGB · WCAG 2.1</span>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module" src="js/picker.js"></script>
+</body>
+</html>
