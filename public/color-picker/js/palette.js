@@ -97,9 +97,7 @@ for (let i = 0; i < 5; i++) {
 
   colorBtn.addEventListener("click", async () => {
     await copyText(colors[i].hex);
-    flashCopied(colorBtn);
-    colorBtn.textContent = "Copied ✓";
-    setTimeout(() => { colorBtn.textContent = ""; }, 900);
+    flashCopied(copyBtn);
   });
   copyBtn.addEventListener("click", async () => {
     await copyText(colors[i].hex);
