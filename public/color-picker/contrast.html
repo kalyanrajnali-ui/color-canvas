@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contrast Checker — ChromaLab</title>
+  <meta name="description" content="Check WCAG 2.1 contrast ratios between text and background colors — AA and AAA pass/fail for normal text, large text and UI components." />
+  <meta property="og:title" content="Contrast Checker — ChromaLab" />
+  <meta property="og:description" content="Check WCAG 2.1 contrast ratios between text and background colors — AA and AAA pass/fail at a glance." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="ambient" aria-hidden="true">
+    <span class="blob blob-cyan"></span>
+    <span class="blob blob-violet"></span>
+    <span class="blob blob-amber"></span>
+  </div>
+
+  <div class="page">
+    <header class="header-outer">
+      <div class="container">
+        <div class="header-inner glass">
+          <a class="brand" href="index.html">
+            <span class="brand-mark"><span class="brand-dot"></span></span>
+            <span class="brand-name">Chroma<span class="brand-accent">Lab</span></span>
+          </a>
+          <nav class="nav" aria-label="Main">
+            <a class="nav-link" href="index.html">Picker</a>
+            <a class="nav-link" href="palette.html">Palette</a>
+            <a class="nav-link active" href="contrast.html" aria-current="page">Contrast</a>
+          </nav>
+          <div class="header-meta">
+            <a class="btn btn-accent" href="index.html">Picker →</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="grid-main">
+        <section class="card glass col-7" aria-label="Contrast inputs and preview">
+          <div class="card-head">
+            <div>
+              <h1 class="card-title">Contrast Checker</h1>
+              <p class="card-sub">WCAG 2.1 readability, pass or fail</p>
+            </div>
+          </div>
+
+          <div class="contrast-fields">
+            <div class="field">
+              <label for="fgHex">Foreground (text)</label>
+              <div class="field-box glass-soft">
+                <input type="color" id="fgColor" value="#22D3C5" aria-label="Foreground color picker" />
+                <input type="text" class="hex-input" id="fgHex" value="#22D3C5" maxlength="7" spellcheck="false" autocomplete="off" />
+              </div>
+            </div>
+            <div class="swap-cell">
+              <button class="btn btn-ghost" id="swapBtn" type="button" aria-label="Swap foreground and background">⇄</button>
+            </div>
+            <div class="field">
+              <label for="bgHex">Background</label>
+              <div class="field-box glass-soft">
+                <input type="color" id="bgColor" value="#0A0F1A" aria-label="Background color picker" />
+                <input type="text" class="hex-input" id="bgHex" value="#0A0F1A" maxlength="7" spellcheck="false" autocomplete="off" />
+              </div>
+            </div>
+          </div>
+
+          <div class="preview" id="preview">
+            <span class="preview-aa">Aa</span>
+            <p>The quick brown fox jumps over the lazy dog — 0123456789.</p>
+          </div>
+        </section>
+
+        <section class="card glass col-5" aria-label="Contrast results">
+          <div class="card-head">
+            <h2 class="section-title">Results</h2>
+            <span class="chip">WCAG 2.1</span>
+          </div>
+
+          <div class="ratio-block">
+            <span class="ratio" id="ratio">7.44</span>
+            <span class="ratio-label">contrast ratio</span>
+          </div>
+
+          <div class="results" id="results"></div>
+
+          <div class="palette-actions">
+            <button class="btn btn-ghost" id="copyRatio" type="button">Copy result</button>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span>ChromaLab — precision color instrument</span>
+        <span>sRGB · WCAG 2.1</span>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module" src="js/contrast.js"></script>
+</body>
+</html>
